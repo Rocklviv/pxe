@@ -1,0 +1,30 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+- name: local_ubuntu
+  driver:
+    box: Ubuntu-12.04
+    customize:
+      memory: 512
+      cpus: 1
+    network:
+      - ["private_network", {'ip': '192.168.56.5'}]
+- name: local_centos
+  driver:
+    box: Centos-6.5
+    customize:
+      memory: 512
+      cpus: 1
+    network:
+      - ["private_network", {'ip': '192.168.56.5'}]
+
+suites:
+  - name: default
+    run_list: 
+    - recipe[chef-pxe]
+    attributes:
