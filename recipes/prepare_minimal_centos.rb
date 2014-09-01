@@ -24,27 +24,41 @@ end
 
 web_app "pxe-image-host" do
   server_name node['pxe']['hostname'] 
+  server_port node['http-chef-pxe']['port']
   docroot "#{node['http-chef-pxe']['http_dir']}"
   allow_override 'All'
   directory_options '+FollowSymLinks'
   cookbook 'apache2'
 end
 
-remote_file node['iso']['name'] do
-  source "#{node['image']['url']}"
-  path "#{node['iso']['tmp_dir']}"
+if node['download']['from_web'] == 'true'
+  remote_file node['iso']['name'] do
+    source "#{node['image']['url']}"
+    path "#{node['iso']['tmp_dir']}"
+  end
+else
+  cookbook_file 'prepare_default_image.sh' do
+    path "/tmp/prepare_default_image.sh"
+    action :create_if_missing
+  end
 end
-
 
 mount node['iso']['mount_dir'] do 
   device "#{node['iso']['tmp_dir']}"
   fstype 'iso9660'
   options 'loop,ro'
-  action [:mount, :enable]
+  action [:mount]
 end
 
 execute 'Copy' do
   command "cp -ar #{node['iso']['mount_dir']}/. #{node['http-chef-pxe']['image_dir']}"
+end
+
+mount node['iso']['mount_dir'] do 
+  device "#{node['iso']['tmp_dir']}"
+  fstype 'iso9660'
+  options 'loop,ro'
+  action [:umount]
 end
 
 remote_file "initrd.img" do
