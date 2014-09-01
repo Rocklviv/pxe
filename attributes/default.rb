@@ -39,4 +39,4 @@ elsif platform_family?('rhel')
 end
 
 # Default ISO
-default['download']['default_image'] = 'true'
+default['download']['default_image'] = true

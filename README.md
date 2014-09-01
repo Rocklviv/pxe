@@ -23,8 +23,12 @@ Supported systems:
 | default['dhcp']['configs']['next_server'] | text | IP that points to TFTPD server | E.g. "192.168.56.5" |
 | default['dhcp']['configs']['dynamic_range'] | text | Range of IP for clients | E.g. "192.168.56.100 192.168.56.200" |
 | default['dhcp']['configs']['subnet_mask'] | text | Subnet mask | E.g. "255.255.255.0" |
-| default['download']['default_image'] | text | Prepare default PXE netboot image. True will download a minimal centos. | true/false |
+| default['download']['default_image'] | boolean | Prepare default PXE netboot image. True will download a minimal centos. | true/false |
 | default['pxe']['hostname'] | text | IP or hostname for apache virtual host | E.g. "192.168.56.5" |
+
+
+## TODO:
+* Complete the documentation.
 
 ## Usage
 
@@ -39,6 +43,10 @@ Include `chef-pxe` in your node's `run_list`:
   ]
 }
 ```
+
+If you have a restrict access to internet, change attribute value 
+``` default['download']['from_web'] = 'false' ```.
+it allows you to add netboot image by yourself.
 
 ## Contributing
 

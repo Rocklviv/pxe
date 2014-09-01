@@ -17,5 +17,5 @@ default['iso']['mount_dir'] = "/tmp/mnt"
 # TFTP directory for netboot
 default['tftp']['centos_dir'] = '/var/lib/tftpboot/centos'
 default['tftp']['centos_arch_dir'] = "#{node['tftp']['centos_dir']}/x86_64"
-#default['image']['url'] = 'http://ftp.tlk-l.net/pub/mirrors/centos.org/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso' #http://ftp.tlk-l.net/pub/mirrors/centos.org/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso
-default['download']['from_web'] = 'true'
+default['image']['url'] = 'http://ftp.tlk-l.net/pub/mirrors/centos.org/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso' #http://ftp.tlk-l.net/pub/mirrors/centos.org/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso
+default['download']['from_web'] = true
