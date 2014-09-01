@@ -36,40 +36,39 @@ if node['download']['from_web'] == 'true'
     source "#{node['image']['url']}"
     path "#{node['iso']['tmp_dir']}"
   end
-
-  mount node['iso']['mount_dir'] do 
-    device "#{node['iso']['tmp_dir']}"
-    fstype 'iso9660'
-    options 'loop,ro'
-    action [:mount]
-  end
-
-  execute 'Copy' do
-    command "cp -ar #{node['iso']['mount_dir']}/. #{node['http-chef-pxe']['image_dir']}"
-  end
-
-  mount node['iso']['mount_dir'] do 
-    device "#{node['iso']['tmp_dir']}"
-    fstype 'iso9660'
-    options 'loop,ro'
-    action [:umount]
-  end
-
-  remote_file "initrd.img" do
-    path "#{node['tftp']['centos_arch_dir']}/initrd.img"
-    source "file://#{node['http-chef-pxe']['image_dir']}/images/pxeboot/initrd.img"
-  end
-
-  remote_file "vmlinuz" do
-    path "#{node['tftp']['centos_arch_dir']}/vmlinuz"
-    source "file:///#{node['http-chef-pxe']['image_dir']}/images/pxeboot/vmlinuz"
-  end
-
 else
-  cookbook_file 'centos_minimal_dl.sh' do
-    path "/tmp/centos_minimal_dl.sh"
+  cookbook_file node['iso']['name'] do
+    path node['iso']['tmp_dir']
     action :create_if_missing
   end
+end
+
+mount node['iso']['mount_dir'] do 
+  device "#{node['iso']['tmp_dir']}"
+  fstype 'iso9660'
+  options 'loop,ro'
+  action [:mount]
+end
+
+execute 'Copy' do
+  command "cp -ar #{node['iso']['mount_dir']}/. #{node['http-chef-pxe']['image_dir']}"
+end
+
+mount node['iso']['mount_dir'] do 
+  device "#{node['iso']['tmp_dir']}"
+  fstype 'iso9660'
+  options 'loop,ro'
+  action [:umount]
+end
+
+remote_file "initrd.img" do
+  path "#{node['tftp']['centos_arch_dir']}/initrd.img"
+  source "file://#{node['http-chef-pxe']['image_dir']}/images/pxeboot/initrd.img"
+end
+
+remote_file "vmlinuz" do
+  path "#{node['tftp']['centos_arch_dir']}/vmlinuz"
+  source "file:///#{node['http-chef-pxe']['image_dir']}/images/pxeboot/vmlinuz"
 end
 
 template "#{node['http-chef-pxe']['image_ks_dir']}/#{node['http-chef-pxe']['ks_filename']}" do 
