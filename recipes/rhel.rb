@@ -26,7 +26,7 @@ execute 'IPTables open UDP port' do
 end
 
 execute 'IPTables open TCP port' do
- 	command "iptables -A INPUT -i #{node['dhcp']['eth']} -s #{node['dhcp']['subnet']}/24 -p tcp --dport 69 -m state --state NEW,ESTABLISHED -j ACCEPT"
+	command "iptables -A INPUT -i #{node['dhcp']['eth']} -s #{node['dhcp']['subnet']}/24 -p tcp --dport 69 -m state --state NEW,ESTABLISHED -j ACCEPT"
 end
 
 include_recipe 'chef-pxe::common'

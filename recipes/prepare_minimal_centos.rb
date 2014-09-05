@@ -31,7 +31,7 @@ web_app "pxe-image-host" do
   cookbook 'apache2'
 end
 
-if node['download']['from_web'] == 'true'
+if node['download']['from_web']
   remote_file node['iso']['name'] do
     source "#{node['image']['url']}"
     path "#{node['iso']['tmp_dir']}"
@@ -48,17 +48,18 @@ mount node['iso']['mount_dir'] do
   fstype 'iso9660'
   options 'loop,ro'
   action [:mount]
+  not_if {::File.exists?("#{node['http-chef-pxe']['image_dir']}/images/pxeboot/vmlinuz")}
 end
 
 execute 'Copy' do
   command "cp -ar #{node['iso']['mount_dir']}/. #{node['http-chef-pxe']['image_dir']}"
+  not_if {::File.exists?("#{node['http-chef-pxe']['image_dir']}/images/pxeboot/vmlinuz")}
 end
 
 mount node['iso']['mount_dir'] do 
   device "#{node['iso']['tmp_dir']}"
-  fstype 'iso9660'
-  options 'loop,ro'
   action [:umount]
+  not_if {::File.exists?("#{node['http-chef-pxe']['image_dir']}/images/pxeboot/vmlinuz")}
 end
 
 remote_file "initrd.img" do
@@ -73,5 +74,10 @@ end
 
 template "#{node['http-chef-pxe']['image_ks_dir']}/#{node['http-chef-pxe']['ks_filename']}" do 
   source "ks/Centos6-5.minimal.ks"
+
+  variables(
+    'hostname' => node['pxe']['hostname'],
+    'port' => node['http-chef-pxe']['port']
+  )
   action :create
 end

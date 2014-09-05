@@ -23,7 +23,7 @@ text
 skipx
 
 # Used with an HTTP install to specify where the install files are located
-url --url http://192.168.110.10/centos
+url --url http://<%= @hostname%>:<%= @port%>/centos
 
 # Assign a static IP address upon first boot & set the hostname
 network --onboot yes --bootproto dhcp --hostname rhel63

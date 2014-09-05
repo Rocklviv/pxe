@@ -69,5 +69,6 @@ node['services'].each do |srvs|
   service srvs do
     supports :restart => true, :status => true, :reload => true
     action [:enable, :restart]
+    provider Chef::Provider::Service::Upstart if platform?("ubuntu") && node["platform_version"].to_f >= 14.04
   end
 end
