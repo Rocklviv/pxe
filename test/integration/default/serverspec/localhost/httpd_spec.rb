@@ -15,6 +15,11 @@ if ['Debian', 'Ubuntu'].include?(os[:family])
 		it { should be_file }
 		it { should contain 'DocumentRoot /var/www/html/' }
 	end
+
+	describe file('/etc/apache2/ports.conf') do 
+		it { should contain 'Listen *:90' }
+	end
+
 elsif os[:family] == 'RedHat'
 
 	describe package('httpd') do 
@@ -30,12 +35,13 @@ elsif os[:family] == 'RedHat'
 		it { should be_file }
 		it { should contain 'DocumentRoot /var/www/html/' }
 	end
-end
 
-#describe port(90) do 
-#	it { should be_listening }
-#end
+	describe file('/etc/httpd/ports.conf') do 
+		it { should contain 'Listen *:90' }
+	end
+end
 
 describe file('/var/www/html') do 
 	it { should be_directory }
+	it { should be_mode '755' }
 end
