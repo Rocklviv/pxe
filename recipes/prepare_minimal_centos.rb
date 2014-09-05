@@ -29,6 +29,7 @@ web_app "pxe-image-host" do
   allow_override 'All'
   directory_options '+FollowSymLinks'
   cookbook 'apache2'
+  notifies :restart, "service['apache2']"
 end
 
 if node['download']['from_web']

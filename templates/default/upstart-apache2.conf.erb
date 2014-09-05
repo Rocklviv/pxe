@@ -1,0 +1,24 @@
+# apache2 - http server
+#
+# Apache is a web server that responds to HTTP and HTTPS requests.
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+
+description "apache2 http server"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+pre-start script
+    mkdir -p /var/run/apache2 || true
+    install -d -o www-data /var/lock/apache2 || true
+    # ssl_scache shouldn't be here if we're just starting up.
+    # (this is bad if there are several apache2 instances running)
+    rm -f /var/run/apache2/*ssl_scache* || true
+end script
+
+# Give up if restart occurs 10 times in 30 seconds.
+respawn limit 10 30
+
+exec /usr/sbin/apache2 -D NO_DETACH
+respawn

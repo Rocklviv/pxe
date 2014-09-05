@@ -4,6 +4,10 @@ elsif platform_family?('rhel')
 	default['packages'] = %w(dhcp syslinux)
 end
 
+if platform?('ubuntu') && node['platform_version'] >= '14.04'
+  set['apache']['version'] = '2.4'
+end
+
 # TTFP configuration.
 default['tftpd']['config'] = '/etc/default/tftpd-hpa'
 default['tftpd']['pxe_cfg'] = '/var/lib/tftpboot/pxelinux.cfg'
@@ -33,10 +37,15 @@ default['dhcp']['eth'] = 'eth1'
 
 # Services
 if platform_family?('debian')
-  default['services'] = ['isc-dhcp-server', 'tftpd-hpa']
+	if platform?('ubuntu') && node['platform_version'] >= '14.04'
+		default['services'] = ['isc-dhcp-server', 'tftpd-hpa', 'apache2']
+	else
+    default['services'] = ['isc-dhcp-server', 'tftpd-hpa']
+  end
 elsif platform_family?('rhel')
   default['services'] = ['dhcpd', 'xinetd']
 end
 
 # Default ISO
 default['download']['default_image'] = true
+default['apache2']['upstart_init'] = '/etc/init/apache2.conf'

@@ -8,6 +8,16 @@
 #
 include_recipe 'apache2'
 
+if platform?('ubuntu') && node['platform_version'] >= '14.04'
+  template node['apache2']['upstart_init'] do 
+    source 'upstart-apache2.conf.erb'
+    owner 'root'
+    group 'root'
+
+    action :create
+  end
+end
+
 template node['dhcp']['config'] do
   source 'dhcpd.conf.erb'
   owner 'root'
@@ -67,8 +77,12 @@ end
 
 node['services'].each do |srvs|
   service srvs do
-    supports :restart => true, :status => true, :reload => true
-    action [:enable, :restart]
     provider Chef::Provider::Service::Upstart if platform?("ubuntu") && node["platform_version"].to_f >= 14.04
+    supports :restart => true, :status => true, :reload => true
+    #if platform?("ubuntu") && node["platform_version"].to_f >= 14.04
+    #  action [:restart]
+    #else
+    action [:enable, :restart]
+    #end
   end
 end

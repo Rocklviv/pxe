@@ -1,3 +1,7 @@
+# 1.0.5
+* Bug fixing.
+* Serverspec tests.
+
 # 1.0.4
 * Added checks to prevent multiple executions of mount/umount while converge.
 * Added support for Ubuntu 14.04
