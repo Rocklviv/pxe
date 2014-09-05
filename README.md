@@ -10,6 +10,7 @@ PXE boot cookbook.
 Supported systems:
 <ol>
   <li>Ubuntu 12.04</li>
+  <li>Ubuntu 14.04</li>
   <li>Centos 6.5</li>
 </ol>
 
@@ -44,9 +45,10 @@ Include `chef-pxe` in your node's `run_list`:
 }
 ```
 
-If you have a restrict access to internet, change attribute value 
+If you have a restrict access to internet, change attribute value
 ``` default['download']['from_web'] = 'false' ```.
-it allows you to add netboot image by yourself.
+Then put downloaded by yourself CentOS 6.5 minimal image to files, to be able import ISO as a default netboot image.
+To download an iso, please use the ``` files/default/centos_minimal_dl.sh ```
 
 ## Contributing
 
