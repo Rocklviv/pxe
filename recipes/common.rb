@@ -42,12 +42,12 @@ end
 
 remote_file "pxelinux.0" do
 	not_if { File.exist?('/var/lib/tftpboot/pxelinux.0') }
-	path "#{node['tftpd']['pxelinux']}"
+	path node['tftpd']['pxelinux']
   source "file://#{node['syslinux']['pxelinux']}"
   action :delete
 end
 
-directory "#{node['tftpd']['pxe_cfg']}" do
+directory node['tftpd']['pxe_cfg'] do
 	action :delete
 	action :create
 end
@@ -62,12 +62,12 @@ template node['pxelinux']['menu'] do
 end
 
 remote_file "copy_pxelinux.0" do
-  path "#{node['tftpd']['pxelinux']}"
+  path node['tftpd']['pxelinux']
   source "file://#{node['syslinux']['pxelinux']}"
 end
 
 remote_file "copy_menu.c32" do
-  path "#{node['tftpd']['menu_c32']}"
+  path node['tftpd']['menu_c32']
   source "file://#{node['syslinux']['menu_c32']}"
 end
 
