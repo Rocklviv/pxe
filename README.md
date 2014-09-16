@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Rocklviv/chef-pxe.svg?branch=master)](https://travis-ci.org/Rocklviv/chef-pxe)
 # chef-pxe
 
 PXE boot cookbook.
