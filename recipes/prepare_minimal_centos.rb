@@ -25,7 +25,7 @@ end
 web_app "pxe-image-host" do
   server_name node['pxe']['hostname'] 
   server_port node['http-chef-pxe']['port']
-  docroot "#{node['http-chef-pxe']['http_dir']}"
+  docroot node['http-chef-pxe']['http_dir']
   allow_override 'All'
   directory_options '+FollowSymLinks'
   cookbook 'apache2'
@@ -34,8 +34,8 @@ end
 
 if node['download']['from_web']
   remote_file node['iso']['name'] do
-    source "#{node['image']['url']}"
-    path "#{node['iso']['tmp_dir']}"
+    source node['image']['url']
+    path node['iso']['tmp_dir']
   end
 else
   cookbook_file node['iso']['name'] do
@@ -45,7 +45,7 @@ else
 end
 
 mount node['iso']['mount_dir'] do 
-  device "#{node['iso']['tmp_dir']}"
+  device node['iso']['tmp_dir']
   fstype 'iso9660'
   options 'loop,ro'
   action [:mount]
@@ -58,7 +58,7 @@ execute 'Copy' do
 end
 
 mount node['iso']['mount_dir'] do 
-  device "#{node['iso']['tmp_dir']}"
+  device node['iso']['tmp_dir']
   action [:umount]
   not_if {::File.exists?("#{node['http-chef-pxe']['image_dir']}/images/pxeboot/vmlinuz")}
 end

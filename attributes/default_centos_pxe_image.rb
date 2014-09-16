@@ -6,8 +6,8 @@ default['http-chef-pxe']['http_dir'] = '/var/www/html/'
 default['http-chef-pxe']['image_dir'] = "#{node['http-chef-pxe']['http_dir']}#{node['http-chef-pxe']['image_name']}"
 default['http-chef-pxe']['image_ks_dir'] = '/var/www/html/ks'
 default['http-chef-pxe']['ks_filename'] = 'Centos6-5.minimal.ks'
-default['http-chef-pxe']['port'] = '90'
-default['apache']['listen_ports'] = ["#{node['http-chef-pxe']['port']}"]
+default['http-chef-pxe']['port'] = 90
+default['apache']['listen_ports'] = [node['http-chef-pxe']['port']]
 
 # ISO Configuration
 default['iso']['name'] = 'CentOS-6.5-x86_64-minimal.iso'
