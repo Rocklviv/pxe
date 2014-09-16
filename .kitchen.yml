@@ -14,17 +14,17 @@ platforms:
       cpus: 1
     network:
       - ["private_network", {'ip': '192.168.56.5'}]
-- name: local_ubuntu
+- name: ubuntu-12.04
   driver:
-    box: Ubuntu-12.04
+    box: ubuntu-12.04
     customize:
       memory: 512
       cpus: 1
     network:
       - ["private_network", {'ip': '192.168.56.5'}]
-- name: local_centos
+- name: centos-6.5
   driver:
-    box: Centos-6.5
+    box: centos-6.5
     customize:
       memory: 512
       cpus: 1
