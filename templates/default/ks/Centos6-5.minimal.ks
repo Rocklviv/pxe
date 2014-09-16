@@ -90,17 +90,3 @@ reboot
 # redirect debugging output to tty3
 #exec < /dev/tty3 > /dev/tty3
 #chvt 3
-
-echo "Creating CentOS-6.3-i386 post installation directory ..."
-mkdir -p /opt/postinstall
-
-
-echo "Downloading CentOS-6.3-i386 post installation files ..."
-cd /opt/postinstall
-wget http://192.168.111.1/kickstart/postinstall/CentOS-6.3-i386-postinstall.tgz
-tar zxf CentOS-6.3-i386-postinstall.tgz
-rm CentOS-6.3-i386-postinstall.tgz > /dev/null 2>&1
-
-echo "Executing CentOS-6.3-i386 post installation script ..."
-./CentOS-6.3-i386-postinstall >> CentOS-6.3-i386-postinstall.out 2>&1
-echo "Done."
