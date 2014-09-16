@@ -1,5 +1,5 @@
 
-# Example kickstart configuration file for a RHEL 6.3 i386 (32-bit) standard install.
+# Example kickstart configuration file
 #
 
 install
@@ -26,7 +26,7 @@ skipx
 url --url http://<%= @hostname%>:<%= @port%>/centos
 
 # Assign a static IP address upon first boot & set the hostname
-network --onboot yes --bootproto dhcp --hostname rhel63
+network --onboot yes --bootproto dhcp --hostname centos65
 
 # Give the second interface a DHCP address (if you are not using a second interface comment this line out)
 #network --device eth1 --bootproto=dhcp
