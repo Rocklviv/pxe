@@ -1,11 +1,5 @@
+language: ruby
 rvm:
   - 1.9.3
-  - 2.1.1
-
-bundler_args: --jobs 7
-
-branches:
-  only:
-    - master
-
-script: bundle exec rake travis:ci
+script:
+  - bundle exec foodcritic -f any .
