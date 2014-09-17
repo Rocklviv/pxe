@@ -8,14 +8,13 @@
 #
 include_recipe 'apache2'
 
-if platform?('ubuntu') && node['platform_version'] >= '14.04'
-  template node['apache2']['upstart_init'] do 
-    source 'upstart-apache2.conf.erb'
-    owner 'root'
-    group 'root'
+template node['apache2']['upstart_init'] do 
+  source 'upstart-apache2.conf.erb'
+  owner 'root'
+  group 'root'
 
-    action :create
-  end
+  action :create
+  only_if { platform?('ubuntu') && node['platform_version'] >= '14.04' }
 end
 
 template node['dhcp']['config'] do
