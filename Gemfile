@@ -17,9 +17,4 @@ gem 'berkshelf'
 gem 'test-kitchen'
 gem 'kitchen-vagrant'
 gem 'kitchen-digitalocean'
-<<<<<<< HEAD
 gem 'foodcritic'
-=======
-gem 'rubocop', '= 0.19'
-gem 'rake'
->>>>>>> 7b5da6ac55ba8a298e57d63618d9a864d8709099
