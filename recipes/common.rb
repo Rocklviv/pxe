@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chef-pxe
+# Cookbook Name:: pxe
 # Recipe:: common
 # Description:: Common recipe for RedHat and Debian based OS.
 # Copyright (C) 2014 Denis Chekirda
@@ -71,7 +71,7 @@ remote_file "copy_menu.c32" do
 end
 
 if node['download']['default_image']
-  include_recipe 'chef-pxe::prepare_minimal_centos'
+  include_recipe 'pxe::prepare_minimal_centos'
 end
 
 node['services'].each do |srvs|

@@ -1,4 +1,4 @@
-name             'chef-pxe'
+name             'pxe'
 maintainer       'Denis Chekirda'
 maintainer_email 'dchekirda@gmail.com'
 license          'All rights reserved'

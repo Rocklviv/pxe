@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chef-pxe
+# Cookbook Name:: pxe
 # Recipe:: prepare_minimal_centos
 # Description:: Prepare CentOS 6.5 minimal as default netboot image.
 # Copyright (C) 2014 Denis Chekirda

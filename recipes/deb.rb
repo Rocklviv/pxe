@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chef-pxe
+# Cookbook Name:: pxe
 # Recipe:: deb
 # Description:: Recipe for all Debian/Ubuntu based OS.
 # Copyright (C) 2014 Denis Chekirda
@@ -17,4 +17,4 @@ node['packages'].each do |pkgs|
 	end
 end
 
-include_recipe 'chef-pxe::common'
+include_recipe 'pxe::common'

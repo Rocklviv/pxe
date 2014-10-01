@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chef-pxe
+# Cookbook Name:: pxe
 # Recipe:: default
 #
 # Copyright (C) 2014 Denis Chekirda
@@ -8,7 +8,7 @@
 #
 
 if platform_family?("rhel")
-  include_recipe 'chef-pxe::rhel'
+  include_recipe 'pxe::rhel'
 elsif platform_family?("debian")
-  include_recipe 'chef-pxe::deb'
+  include_recipe 'pxe::deb'
 end

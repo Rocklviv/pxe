@@ -34,5 +34,5 @@ platforms:
 suites:
   - name: default
     run_list: 
-    - recipe[chef-pxe]
+    - recipe[pxe]
     attributes:

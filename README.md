@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/Rocklviv/chef-pxe.svg?branch=master)](https://travis-ci.org/Rocklviv/chef-pxe)
-# chef-pxe
+[![Build Status](https://travis-ci.org/Rocklviv/pxe.svg?branch=master)](https://travis-ci.org/Rocklviv/pxe)
+# pxe
 
 PXE boot cookbook.
 * Depends on [apt](https://supermarket.getchef.com/cookbooks/apt) cookbook.
@@ -34,14 +34,14 @@ Supported systems:
 
 ## Usage
 
-### chef-pxe::default
+### pxe::default
 
-Include `chef-pxe` in your node's `run_list`:
+Include `pxe` in your node's `run_list`:
 
 ```json
 {
   "run_list": [
-    "recipe[chef-pxe::default]"
+    "recipe[pxe::default]"
   ]
 }
 ```
