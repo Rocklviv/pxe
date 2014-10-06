@@ -4,22 +4,60 @@ driver_config:
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: 11.12.8
+  require_chef_omnibus: true
 
 platforms:
-
 - name: ubuntu-12-04-x64
   driver_plugin: digitalocean
   driver_config:
     image: ubuntu-12-04-x64
     size: 512mb
     region: nyc3
-    ssh_key_ids: [<%= ENV['DIGITALOCEAN_SSH_KEY_IDS'] %>]
+    ssh_key_ids: <%= ENV['DIGITALOCEAN_SSH_KEY_IDS'] %>
     ssh_key: <%= ENV['DIGITALOCEAN_SSH_KEY_PATH'] %>
-  run_list:
-    - recipe[chef-pxe]
+- name: centos-6-5-x64
+  driver_plugin: digitalocean
+  driver_config:
+    image: centos-6-5-x64
+    size: 512mb
+    region: nyc3
+    ssh_key_ids: <%= ENV['DIGITALOCEAN_SSH_KEY_IDS'] %>
+    ssh_key: <%= ENV['DIGITALOCEAN_SSH_KEY_PATH'] %>
+- name: ubuntu-14-04-x64
+  driver_plugin: digitalocean
+  driver_config:
+    image: ubuntu-14-04-x64
+    size: 512mb
+    region: nyc3
+    ssh_key_ids: <%= ENV['DIGITALOCEAN_SSH_KEY_IDS'] %>
+    ssh_key: <%= ENV['DIGITALOCEAN_SSH_KEY_PATH'] %>
+- name: debian-7-0-x64
+  driver_plugin: digitalocean
+  driver_config:
+    image: debian-7-0-x64
+    size: 512mb
+    region: nyc3
+    ssh_key_ids: <%= ENV['DIGITALOCEAN_SSH_KEY_IDS'] %>
+    ssh_key: <%= ENV['DIGITALOCEAN_SSH_KEY_PATH'] %>
+- name: centos-7-0-x64
+  driver_plugin: digitalocean
+  driver_config:
+    image: centos-6-5-x64
+    size: 512mb
+    region: nyc3
+    ssh_key_ids: <%= ENV['DIGITALOCEAN_SSH_KEY_IDS'] %>
+    ssh_key: <%= ENV['DIGITALOCEAN_SSH_KEY_PATH'] %>
+- name: debian-6-0-x64
+  driver_plugin: digitalocean
+  driver_config:
+    image: debian-7-0-x64
+    size: 512mb
+    region: nyc3
+    ssh_key_ids: <%= ENV['DIGITALOCEAN_SSH_KEY_IDS'] %>
+    ssh_key: <%= ENV['DIGITALOCEAN_SSH_KEY_PATH'] %>
 
 suites:
-  - name: default
-    run_list:
-    attributes:
+- name: default
+  run_list:
+    - recipe[pxe]
+  attributes: {}
