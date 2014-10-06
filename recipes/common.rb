@@ -56,7 +56,8 @@ template node['pxelinux']['menu'] do
   action :create
 
   variables(
-    'config' => node['pxe']['hostname']
+    'config' => node['pxe']['hostname'],
+    'port' => node['http-chef-pxe']['port']
   )
 end
 
