@@ -7,41 +7,47 @@ provisioner:
 
 platforms:
 - name: ubuntu-14.04
-  customize:
-    memory: 384
-    cpus: 1
-  network:
-    - ["private_network", {'ip': '192.168.56.5'}]
+  driver:
+    customize:
+      memory: 384
+      cpus: 1
+    network:
+      - ["private_network", {'ip': '192.168.56.5'}]
 - name: ubuntu-12.04
-  customize:
-    memory: 384
-    cpus: 1
-  network:
-    - ["private_network", {'ip': '192.168.56.5'}]
+  driver:
+    customize:
+      memory: 384
+      cpus: 1
+    network:
+      - ["private_network", {'ip': '192.168.56.5'}]
 - name: centos-6.5
-  customize:
-    memory: 512
-    cpus: 1
-  network:
-    - ["private_network", {'ip': '192.168.56.5'}]
+  driver:
+    customize:
+      memory: 384
+      cpus: 1
+    network:
+      - ["private_network", {'ip': '192.168.56.5'}]
 - name: centos-7.0
-  customize:
-    memory: 512
-    cpus: 1
-  network:
-    - ["private_network", {'ip': '192.168.56.5'}]
+  driver:
+    customize:
+      memory: 384
+      cpus: 1
+    network:
+      - ["private_network", {'ip': '192.168.56.5'}]
 - name: debian-7.6
-  customize:
-    memory: 384
-    cpus: 1
-  network:
-    - ["private_network", {'ip': '192.168.56.5'}]
+  driver:
+    customize:
+      memory: 384
+      cpus: 1
+    network:
+      - ["private_network", {'ip': '192.168.56.5'}]
 - name: debian-6.0.10
-  customize:
-    memory: 384
-    cpus: 1
-  network:
-    - ["private_network", {'ip': '192.168.56.5'}]
+  driver:
+    customize:
+      memory: 384
+      cpus: 1
+    network:
+      - ["private_network", {'ip': '192.168.56.5'}]
 
 suites:
   - name: default
