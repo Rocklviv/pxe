@@ -10,6 +10,7 @@ depends "apt"
 depends "yum"
 depends "tftp"
 depends "apache2"
+depends "iptables", "~> 0.14.0"
 
 %w{rhel centos debian ubuntu}.each do |os|
   supports os

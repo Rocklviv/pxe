@@ -1,0 +1,4 @@
+# open UDP port
+-A FWR -i <%= node['dhcp']['eth'] %> -s <%= node['dhcp']['subnet'] %>/24 -p udp --dport 69 -m state --state NEW,ESTABLISHED -j ACCEPT
+# open TCP port
+-A FWR -i <%= node['dhcp']['eth'] %> -s <%= node['dhcp']['subnet'] %>/24 -p tcp --dport 69 -m state --state NEW,ESTABLISHED -j ACCEPT
