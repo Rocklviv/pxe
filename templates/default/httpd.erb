@@ -1,0 +1,2 @@
+# open apache port
+-A FWR -i <%= node['dhcp']['eth'] %> -s <%= node['dhcp']['subnet'] %>/24 -p tcp --dport <%= node['http-chef-pxe']['port'] %> -j ACCEPT
