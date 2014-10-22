@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-if ['Debian', 'Ubuntu'].include?(os[:family])
+if ['debian', 'ubuntu'].include?(os[:family])
 
 	describe package('apache2') do
 		it { should be_installed }
@@ -20,7 +20,7 @@ if ['Debian', 'Ubuntu'].include?(os[:family])
 		it { should contain 'Listen *:90' }
 	end
 
-elsif os[:family] == 'RedHat'
+elsif os[:family] == 'redhat'
 
 	describe package('httpd') do 
 		it { should be_installed }
