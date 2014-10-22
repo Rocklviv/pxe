@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-if ['Debian', 'Ubuntu'].include?(os[:family])
+if ['debian', 'ubuntu'].include?(os[:family])
 	# Checks installed packages
 	describe package('tftpd-hpa') do 
 		it { should be_installed }
@@ -25,7 +25,7 @@ if ['Debian', 'Ubuntu'].include?(os[:family])
 		it { should be_running }
 	end
 
-elsif os[:family] == 'RedHat'
+elsif os[:family] == 'redhat'
 	# Check installed packages.
 	describe package('tftp-server') do 
 		it { should be_installed }
