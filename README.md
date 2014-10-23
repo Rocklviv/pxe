@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/Rocklviv/pxe.svg?branch=master)](https://travis-ci.org/Rocklviv/pxe)
 # pxe
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Rocklviv/pxe?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 PXE boot cookbook.
 * Depends on [apt](https://supermarket.getchef.com/cookbooks/apt) cookbook.
